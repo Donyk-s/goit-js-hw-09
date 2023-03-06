@@ -13,7 +13,7 @@ const refs = {
   minutes: document.querySelector('span[data-minutes]'),
   seconds: document.querySelector('span[data-seconds]'),
 };
-console.log('refs.startBtn', refs.startBtn);
+// console.log('refs.startBtn', refs.startBtn);
 refs.startBtn.disabled = true;
 
 const options = {
@@ -28,7 +28,7 @@ const options = {
     } else refs.startBtn.disabled = false;
   },
 };
-flatpickr(text, options);
+flatpickr(refs.inputTimer, options);
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
@@ -48,15 +48,28 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 function addLeadingZero(value) {
-  return value.tostring().padStart(2, '0');
+  return value.toString().padStart(2, '0');
 }
 refs.startBtn.addEventListener('click', () => {
   let timer = setInterval(() => {
-    let timeCounter = new Date(text.value) - new Date();
+    let timeCounter = new Date(refs.inputTimer.value) - new Date();
     console.log(timeCounter);
     refs.startBtn.disabled = true;
     if (timeCounter >= 0) {
       let timeOdj = convertMs(timeCounter);
+      console.log(timeOdj);
+      refs.days.textContent = addLeadingZero(timeOdj.days);
+      refs.hours.textContent = addLeadingZero(timeOdj.hours);
+      refs.minutes.textContent = addLeadingZero(timeOdj.minutes);
+      refs.seconds.textContent = addLeadingZero(timeOdj.seconds);
+
+      if (timeCounter >= 10000) {
+        refs.timerContainer.style.color = 'green';
+      } else {
+        Notiflix.Notify.success('Timer is finished');
+        refs.timerContainer.style.color = 'orange';
+        clearInterval(timer);
+      }
     }
-  });
+  }, 1000);
 });
