@@ -34,8 +34,7 @@ refs.btnCreatePromise.addEventListener('click', e => {
 
   let firstDelay = Number(refs.delay.value);
   let delayStep = Number(refs.step.value);
-  console.log(delayStep);
-  // цикл для перебору кількості введень
+  // console.log(delayStep);
   for (let i = 0; i < refs.amount.value; i += 1) {
     createPromise(1 + i, firstDelay + i * delayStep)
       .then(({ position, delay }) => {
