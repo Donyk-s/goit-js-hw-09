@@ -6,6 +6,7 @@ const refs = {
   amount: document.querySelector('input[name="amount"]'),
   btnCreatePromise: document.querySelector('button[type="submit"]'),
 };
+console.log(refs.btnCreatePromise);
 
 function createPromise(position, delay) {
   const promise = new Promise((resolve, reject) => {
