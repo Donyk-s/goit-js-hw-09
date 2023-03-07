@@ -29,19 +29,19 @@ refs.btnCreatePromise.addEventListener('click', e => {
   let firstDelay = Number(refs.delay.value);
   let delayStep = Number(refs.step.value);
 
-//   for (let i = 0; i < refs.amount.value; i += 1) {
-//     createPromise(1 + i, firstDelay + i * delayStep)
-//       .then(({ position, delay }) => {
-//         Notiflix.Notify.success(
-//           `✅ Fulfilled promise ${position} in ${delay}ms`
-//         );
-//       })
-//       .catch(({ position, delay }) => {
-//         Notiflix.Notify.failure(
-//           `❌ Rejected promise ${position} in ${delay}ms`
-//         );
-//       });
-//   }
+  for (let i = 0; i < refs.amount.value; i += 1) {
+    createPromise(1 + i, firstDelay + i * delayStep)
+      .then(({ position, delay }) => {
+        Notiflix.Notify.success(
+          `✅ Fulfilled promise ${position} in ${delay}ms`
+        );
+      })
+      .catch(({ position, delay }) => {
+        Notiflix.Notify.failure(
+          `❌ Rejected promise ${position} in ${delay}ms`
+        );
+      });
+  }
 
-//   form.reset();
-// });
+  form.reset();
+});
